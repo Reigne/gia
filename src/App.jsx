@@ -13,6 +13,7 @@ import Tools from './components/Tools';
 import Faq from './components/Faq';
 import Footer from './components/Footer';
 import CuteCursor from './components/CuteCursor';
+import PageIntro from './components/PageIntro';
 import useSmoothScroll from './hooks/useSmoothScroll';
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
       </main>
       <Footer />
       <CuteCursor />
+      <PageIntro />
     </>
   );
 }

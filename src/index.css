@@ -15,6 +15,27 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+  height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 html, body {
   background: var(--bg);
   color: var(--fg);
@@ -133,7 +154,23 @@ img { max-width: 100%; display: block; }
 .nav-links a {
   transition: color .2s ease;
   white-space: nowrap;
+  position: relative;
 }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-links a.active::after,
+.nav-links a:hover::after { transform: scaleX(1); }
 .nav-links a:hover { color: #fff; }
 .nav.is-scrolled .nav-links {
   color: rgba(17,17,16,0.65);

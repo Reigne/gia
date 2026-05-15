@@ -1,20 +1,31 @@
+import { motion } from 'motion/react';
+import { staggerContainer, fadeUp } from './Reveal';
+import Reveal from './Reveal';
 import { testimonials } from '../data/site';
 
 export default function Testimonials() {
   return (
     <section className="testimonials" id="testimonials">
       <div className="container">
-        <div className="section-head">
-          <div>
-            <div className="section-eyebrow">Testimonials</div>
-            <h2>What clients <span className="serif">say</span>.</h2>
+        <Reveal>
+          <div className="section-head">
+            <div>
+              <div className="section-eyebrow">Testimonials</div>
+              <h2>What clients <span className="serif">say</span>.</h2>
+            </div>
+            <p>Kind words from the brands and creators I&apos;ve had the pleasure of working with.</p>
           </div>
-          <p>Kind words from the brands and creators I&apos;ve had the pleasure of working with.</p>
-        </div>
+        </Reveal>
 
-        <div className="testi-grid">
+        <motion.div
+          className="testi-grid"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+        >
           {testimonials.map((t) => (
-            <div className="testi-card" key={t.name}>
+            <motion.div className="testi-card" key={t.name} variants={fadeUp}>
               <div className="testi-stars">★★★★★</div>
               <p className="testi-quote">{t.quote}</p>
               <div className="testi-author">
@@ -24,9 +35,9 @@ export default function Testimonials() {
                   <div className="testi-role">{t.role}</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
