@@ -1,33 +1,73 @@
+import { useState } from 'react';
 import Reveal from './Reveal';
 
+const VIDEO_ID = 'jdRKfbjGmW4';
+
 export default function Showreel() {
+  const [playing, setPlaying] = useState(false);
+
   return (
     <section className="showreel" id="showreel">
       <div className="container">
+
         <Reveal>
-          <div className="section-head section-head--center">
-            <div>
-              <div className="section-eyebrow">Showreel — 2025</div>
-              <h2>A 60-second taste of <span className="serif">my work</span>.</h2>
-            </div>
+          <div className="showreel-header">
+            <div className="section-eyebrow">Showreel — 2025</div>
+            <h2>A 60-second taste of <span className="serif">my work</span>.</h2>
+            <p className="showreel-sub">YouTube long-form · social ads · short-form reels</p>
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="reel-stack">
-            <div className="reel-frame">
-              <div className="reel-placeholder" role="button" aria-label="Play showreel" tabIndex={0}>
+          <div className="reel-frame">
+            {playing ? (
+              <iframe
+                className="reel-video"
+                src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`}
+                title="2025 Editing Reel"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div
+                className="reel-placeholder"
+                role="button"
+                aria-label="Play showreel"
+                tabIndex={0}
+                onClick={() => setPlaying(true)}
+                onKeyDown={(e) => e.key === 'Enter' && setPlaying(true)}
+                style={{
+                  backgroundImage: `url(https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                {/* vignette */}
+                <div className="reel-vignette" />
+
+                {/* centered play */}
                 <div className="reel-play">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </div>
+
+                {/* bottom-left meta */}
                 <div className="reel-meta">
-                  <span className="reel-duration">01:08</span>
-                  <span className="reel-caption">2025 Editing Reel — YouTube, ads &amp; shorts</span>
+                  <span className="reel-caption">2025 Editing Reel</span>
+                  <span className="reel-duration">01:08 &mdash; YouTube, ads &amp; shorts</span>
+                </div>
+
+                {/* top-right badge */}
+                <div className="reel-badge">
+                  <span className="reel-badge-dot" />
+                  Watch reel
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </Reveal>
+
       </div>
     </section>
   );
