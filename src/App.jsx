@@ -1,42 +1,24 @@
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Showreel from './components/Showreel';
-import Stats from './components/Stats';
-import About from './components/About';
-import Services from './components/Services';
-import Process from './components/Process';
-import Work from './components/Work';
-import Experience from './components/Experience';
-import Testimonials from './components/Testimonials';
-import Clients from './components/Clients';
-import Tools from './components/Tools';
-import Faq from './components/Faq';
 import Footer from './components/Footer';
 import CuteCursor from './components/CuteCursor';
 import PageIntro from './components/PageIntro';
+import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
 import useSmoothScroll from './hooks/useSmoothScroll';
 
 export default function App() {
   useSmoothScroll();
+  const { pathname } = useLocation();
 
   return (
     <>
       <Nav />
-      <main>
-        <Hero />
-        <Showreel />
-        <Stats />
-        <About />
-        <Services />
-        <Process />
-        <Work />
-        <Experience />
-        <Testimonials />
-        <Clients />
-        <Tools />
-        <Faq />
-      </main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+      <Footer minimal={pathname === '/contact'} />
       <CuteCursor />
       <PageIntro />
     </>

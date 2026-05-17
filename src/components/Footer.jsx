@@ -1,39 +1,43 @@
 import Reveal from './Reveal';
 
-export default function Footer() {
+export default function Footer({ minimal = false }) {
   return (
-    <footer id="contact">
+    <footer id="contact" className={minimal ? 'footer--minimal' : ''}>
       <div className="container">
-        <Reveal>
-          <h2 className="footer-cta">
-            Let&apos;s make your next video <span className="serif">unmissable</span>.
-          </h2>
-        </Reveal>
+        {!minimal && (
+          <>
+            <Reveal>
+              <h2 className="footer-cta">
+                Let&apos;s make your next video <span className="serif">unmissable</span>.
+              </h2>
+            </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="footer-actions">
-            <a href="mailto:geferlene@gmail.com" className="btn-primary">
-              Send me a brief
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </Reveal>
+            <Reveal delay={0.1}>
+              <div className="footer-actions">
+                <a href="mailto:geferlene@gmail.com" className="btn-primary">
+                  Send me a brief
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </Reveal>
+          </>
+        )}
 
         <Reveal delay={0.2}>
           <div className="footer-grid">
             <div className="footer-col footer-brand">
-              <a href="#" className="logo">Geferlene <span className="serif">Aznar</span></a>
+              <a href="/" className="logo">Geferlene <span className="serif">Aznar</span></a>
               <p>Video editor based in Cebu, Philippines — working remotely with founders, agencies and creators worldwide.</p>
             </div>
 
             <div className="footer-col">
               <h4>Site</h4>
-              <a href="#services">Services</a>
-              <a href="#experience">Experience</a>
-              <a href="#tools">Toolkit</a>
-              <a href="#contact">Contact</a>
+              <a href="/#services">Services</a>
+              <a href="/#experience">Experience</a>
+              <a href="/#tools">Toolkit</a>
+              <a href="/contact">Contact</a>
             </div>
 
             <div className="footer-col">

@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { navLinks } from '../data/site';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState('');
   const tickingRef = useRef(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const update = () => {
-      const hero = document.querySelector('.hero');
+      const hero = document.querySelector('.hero, .contact-hero');
       const switchPoint = hero ? hero.offsetHeight - 96 : 80;
       setScrolled(window.scrollY > switchPoint);
       tickingRef.current = false;
@@ -25,14 +28,14 @@ export default function Nav() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.replace('#', ''));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
+    if (!isHome) return;
+    const ids = navLinks
+      .filter((l) => l.href.startsWith('#'))
+      .map((l) => l.href.replace('#', ''));
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (!sections.length) return;
 
     const obs = new IntersectionObserver(
@@ -43,33 +46,46 @@ export default function Nav() {
       },
       { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
     );
-
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, []);
+  }, [isHome]);
+
+  const isContactPage = location.pathname === '/contact';
 
   return (
     <header className={`nav${scrolled ? ' is-scrolled' : ''}`}>
       <div className="container nav-inner">
-        <a href="#" className="logo" aria-label="Gia Studio home">
+        <Link to="/" className="logo" aria-label="Gia Studio home">
           <img src="/logo2.png" alt="Gia" className="logo-image" />
           <span className="logo-text">Gia</span>
-        </a>
+        </Link>
         <nav className="nav-links">
           {navLinks.map((l) => {
             const id = l.href.replace('#', '');
+            const isActive = isHome ? activeId === id : false;
+            if (l.href === '/contact') {
+              return (
+                <Link
+                  key={l.href}
+                  to="/contact"
+                  className={isContactPage ? 'active' : ''}
+                >
+                  {l.label}
+                </Link>
+              );
+            }
             return (
               <a
                 key={l.href}
-                href={l.href}
-                className={activeId === id ? 'active' : ''}
+                href={isHome ? l.href : `/${l.href}`}
+                className={isActive ? 'active' : ''}
               >
                 {l.label}
               </a>
             );
           })}
         </nav>
-        <a href="#contact" className="nav-cta">Book a call</a>
+        <Link to="/contact" className="nav-cta">Send a brief</Link>
       </div>
     </header>
   );

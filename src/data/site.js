@@ -2,7 +2,7 @@ export const navLinks = [
   { href: '#showreel', label: 'Reel' },
   { href: '#work', label: 'Work' },
   { href: '#experience', label: 'Experience' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export const heroClients = [
