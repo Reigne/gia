@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import CuteCursor from './components/CuteCursor';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import CuteCursor from './components/CuteCursor';
 import PageIntro from './components/PageIntro';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';

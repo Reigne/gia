@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { staggerContainer, fadeUp } from './Reveal';
+import { staggerContainer, fadeUp } from './revealVariants';
 import Reveal from './Reveal';
 import { faqs } from '../data/site';
 
