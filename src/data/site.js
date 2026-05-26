@@ -27,32 +27,30 @@ export const aboutTags = [
 
 export const services = [
   {
-    num: '01 — Long-form',
+    num: '01 - Long-form',
     title: ['YouTube ', 'videos'],
     body:
-      '8–15 minute edits for finance, tech, philosophy and lifestyle channels. Punchy pacing, clean B-roll, retention-tuned cuts and custom thumbnails when needed.',
+      '8-15 minute edits for finance, tech, philosophy and lifestyle channels. Punchy pacing, clean B-roll, retention-tuned cuts and custom thumbnails when needed.',
   },
   {
-    num: '02 — Social',
+    num: '02 - Social',
     title: ['Ads & ', 'campaigns'],
     body:
-      'High-performing video ads for Facebook, Instagram and YouTube — testimonial edits, UGC, landing-page videos and creative variations for A/B testing.',
+      'High-performing video ads for Facebook, Instagram and YouTube - testimonial edits, UGC, landing-page videos and creative variations for A/B testing.',
   },
   {
-    num: '03 — Short-form',
+    num: '03 - Short-form',
     title: ['Reels & ', 'shorts'],
     body:
       'Vertical edits cut from podcasts, long-form content or fresh footage. Optimized for Reels, Shorts and TikTok with hooks, captions and motion graphics.',
   },
 ];
-
 export const processSteps = [
   { icon: '📋', title: 'Brief', body: 'Share your footage, references and goals. I ask the right questions upfront.' },
   { icon: '✂️', title: 'First cut', body: 'A full draft with pacing, music and graphics. Delivered via private review link.' },
   { icon: '💬', title: 'Revisions', body: 'Leave timestamped feedback on the video. Turned around within 24 hours.' },
   { icon: '🚀', title: 'Delivery', body: 'Final export in your format and spec. Ready to upload — no extra steps.' },
 ];
-
 export const workItems = [
   { tone: 'a', tag: 'YouTube · Finance', title: ['How Money ', 'Works'] },
   { tone: 'b', tag: 'Ad · Solar', title: ['Solar Lead ', 'Campaign'] },
